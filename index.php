@@ -15,7 +15,7 @@
                 $loginForm = $_POST['login'];
                 $senhaForm = $_POST['senha'];
 
-                if($login => $loginForm && $senha == $senhaForm){
+                if($login == $loginForm && $senha == $senhaForm){
                     //logado com sucesso!
                     $_SESSION['login'] = $login;
                     header('location: index.php');
@@ -27,6 +27,11 @@
             
             include('login.php');
             }else{
+                if(isset($_GET['logout'])){
+                unset($_SESSION['login']);
+                session_destroy();
+                header('Location: index.php');
+                }
             include('home.php');
             }
         
